@@ -16,7 +16,10 @@ export const userRouter = t.router({
   }),
   update: userProcedure
     .input(z.object({ name: z.string() }))
+    .output(z.object({ id: z.string(), name: z.string() }))
     .mutation((req) => {
+      console.log(req.ctx.isAdmin);
+
       console.log(
         'Updating user ',
         req.input.userId,
